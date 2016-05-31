@@ -33,7 +33,7 @@
     chdir={{ elasticsearch_home_dir }}
     creates={{ elasticsearch_home_dir }}/plugins/{{ item.dirname }}/_site/{{ item.file }}
   when: item.url is not defined and install_es_plugins == "yes"
-  with_items: elasticsearch_plugins
+  with_items: "{{ elasticsearch_plugins }}"
   ignore_errors: no
 - name: Installing Plugins for 2.x by URL
   action: >
@@ -41,7 +41,7 @@
     chdir={{ elasticsearch_home_dir }}
     creates={{ elasticsearch_home_dir }}/plugins/{{ item.dirname }}
   when: item.url is defined and install_es_plugins == "yes"
-  with_items: elasticsearch_plugins
+  with_items: "{{ elasticsearch_plugins }}"
   ignore_errors: yes
 # Fix permissions
 - file: >
