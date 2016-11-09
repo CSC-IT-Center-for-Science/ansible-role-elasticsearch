@@ -57,11 +57,12 @@
 
 
 
-- template: src=elasticsearch_csc.default.j2 dest=/etc/sysconfig/elasticsearch owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644 backup=yes
+- name: template in sysconfig/elasticsearch
+  template: src=elasticsearch_csc.default.j2 dest=/etc/sysconfig/elasticsearch owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644 backup=yes
 
 # Install Other Generic Plugins
 - include: plugins.yml
-  when: (elasticsearch_plugins is defined and elasticsearch_install_version != "2.x" and elasticsearch_install_version != "2.x" )
+  when: (elasticsearch_plugins is defined and elasticsearch_install_version != "2.x" and elasticsearch_install_version != "5.x" )
 
 - include: plugins2x.yml
   when: (elasticsearch_plugins is defined and elasticsearch_install_version == "2.x")
