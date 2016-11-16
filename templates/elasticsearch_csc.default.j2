@@ -9,10 +9,13 @@ ES_USER={{ elasticsearch_user }}
 ES_GROUP={{ elasticsearch_group }}
 {% endif %}
 
+{% if elasticsearch_heap_size is defined and elasticsearch_install_version != "5.x" %}
 # Heap Size (defaults to 256m min, 1g max)
 #ES_HEAP_SIZE=2g
-{% if elasticsearch_heap_size is defined %}
 ES_HEAP_SIZE={{ elasticsearch_heap_size }}
+{% else %}
+# With ES 5.x ES_HEAP_SIZE is now configured in /etc/elasticsearch/jvm.options
+# https://www.elastic.co/guide/en/elasticsearch/reference/master/heap-size.html
 {% endif %}
 
 # Heap new generation
