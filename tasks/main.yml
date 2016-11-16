@@ -23,7 +23,7 @@
   file: path={{ elasticsearch_work_dir }} state=directory owner={{ elasticsearch_user }} group={{ elasticsearch_group }} recurse=yes
   when: elasticsearch_work_dir is defined
 - name: create conf dir
-  file: path={{ elasticsearch_conf_dir }} state=directory owner={{ elasticsearch_user }} group={{ elasticsearch_group }} recurse=yes
+  file: path={{ elasticsearch_conf_dir }} state=directory owner=root group={{ elasticsearch_group }} recurse=yes
   when: elasticsearch_conf_dir is defined
 - name: create plugin dir
   file: path={{ elasticsearch_plugin_dir }} state=absent
@@ -50,19 +50,19 @@
   register: configured_elasticsearch2
 
 - name: Configuring template elasticsearch.yml Elasticsearch Node 5.x
-  template: src=elasticsearch_csc_5.x.yml.j2 dest={{ elasticsearch_conf_dir }}/elasticsearch.yml owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644 backup=yes
+  template: src=elasticsearch_csc_5.x.yml.j2 dest={{ elasticsearch_conf_dir }}/elasticsearch.yml owner=root group={{ elasticsearch_group }} mode=0644 backup=yes
   when: elasticsearch_conf_dir is defined and elasticsearch_install_version == "5.x"
   tags: elasticsearch
   register: configured_elasticsearch5
 
 - name: Configuring template jvm.options file for Elasticsearch 5.x
-  template: src=jvm.options.j2 dest={{ elasticsearch_conf_dir }}/jvm.options owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644 backup=yes
+  template: src=jvm.options.j2 dest={{ elasticsearch_conf_dir }}/jvm.options owner=root group={{ elasticsearch_group }} mode=0644 backup=yes
   when: elasticsearch_conf_dir is defined and elasticsearch_install_version == "5.x"
   tags: elasticsearch
   register: configured_elasticsearch5_jvm
 
 - name: template in sysconfig/elasticsearch
-  template: src=elasticsearch_csc.default.j2 dest=/etc/sysconfig/elasticsearch owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644 backup=yes
+  template: src=elasticsearch_csc.default.j2 dest=/etc/sysconfig/elasticsearch owner=root group={{ elasticsearch_group }} mode=0644 backup=yes
 
 # Install Other Generic Plugins
 - include: plugins.yml
