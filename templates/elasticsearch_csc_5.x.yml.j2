@@ -155,7 +155,12 @@ cluster.routing.allocation.disk.threshold_enabled: {{ elasticsearch_sec_cluster_
 
 {% if elasticsearch_http_cors_enabled is defined %}
 http.cors.enabled: {{ elasticsearch_http_cors_enabled }}
+http.cors.allow-origin: "{{ inventory_hostname }}"
 {% endif %}
 
-http.cors.allow-origin: "{{ inventory_hostname }}"
-
+{% if elasticsearch_extra_settings is defined %}
+# Extra elasticsearch settings
+{% for es_setting in elasticsearch_extra_settings %}
+{{ es_setting }}
+{% endfor %}
+{% endif %}

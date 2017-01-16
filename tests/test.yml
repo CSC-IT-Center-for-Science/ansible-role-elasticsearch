@@ -6,5 +6,7 @@
     - ansible-role-elasticsearch
   vars:
     - elasticsearch_install_version: "5.x"
+    - elasticsearch_extra_settings:
+      - "node.data: true"
 
 # vim:ft=ansible:
