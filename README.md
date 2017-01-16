@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-elasticsearch.svg?branch=master)](https://travis-ci.org/CSC-IT-Center-for-Science/ansible-role-elasticsearch)
 # Ansible Playbook for Elasticsearch
 This is an [Ansible](http://www.ansibleworks.com/) playbook for [Elasticsearch](http://www.elasticsearch.org/). You can use it by itself or as part of a larger playbook customized for your local environment.
 
@@ -12,5 +13,5 @@ MIT
 
 # Author Information
 
-Originally by George Stathis - gstathis [at] traackr.com
+Originally by George Stathis - gstathis [at] traackr.com - and later in https://github.com/elastic/ansible-elasticsearch
 Modified heavilly by Johan Guldmyr @ CSC for a Red Hat distro and stripping functionality.
