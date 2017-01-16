@@ -1,0 +1,10 @@
+---
+- hosts: test.lxc
+  remote_user: root
+  become: True
+  roles:
+    - ansible-role-elasticsearch
+  vars:
+    - elasticsearch_install_version: "5.x"
+
+# vim:ft=ansible:
