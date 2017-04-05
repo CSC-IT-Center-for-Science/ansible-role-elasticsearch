@@ -159,3 +159,6 @@ http.cors.enabled: {{ elasticsearch_http_cors_enabled }}
 
 http.cors.allow-origin: "{{ inventory_hostname }}"
 
+{% if elasticsearch_xpack is defined %}
+{{ elasticsearch_xpack }}
+{% endif %}
